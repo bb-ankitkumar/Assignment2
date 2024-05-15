@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("org.jetbrains.kotlin.kapt")
 }
 
 android {
@@ -35,6 +36,8 @@ android {
     }
 }
 
+val room_version = "2.4.1"
+val  coroutine_version = "1.5.2"
 dependencies {
 
     implementation(libs.androidx.core.ktx)
@@ -47,6 +50,10 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+    // Room
+    implementation("androidx.room:room-runtime:$room_version")
+    kapt("androidx.room:room-compiler:$room_version")
+    implementation("androidx.room:room-ktx:$room_version")
     // Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation( "com.squareup.retrofit2:converter-gson:2.9.0")
@@ -55,4 +62,8 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.3.1")
     // RecyclerView
     implementation("androidx.recyclerview:recyclerview:1.2.1")
+    // Coroutine
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine_version")
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_version")
+
 }
